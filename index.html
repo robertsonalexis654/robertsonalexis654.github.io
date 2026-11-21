@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容资讯平台 - 栏目导航与内容精选</title>
+<meta name="keywords" content="内容资讯,栏目导航,内容精选,行业观察,阅读指南">
+<meta name="description" content="内容资讯平台提供栏目导航与内容精选，涵盖行业观察、实用指南与常见问题解答，帮助读者快速定位所需信息，结构清晰、检索便捷。">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="内容资讯平台编辑部">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="theme-color" content="#12233d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="内容资讯平台">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="按栏目浏览，按主题检索的阅读入口">
+<meta property="og:description" content="把分散的长文、清单与答疑整理成清楚的目录，读者三步之内即可找到想读的那一篇。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="按栏目浏览，按主题检索的阅读入口">
+<meta name="twitter:description" content="把分散的长文、清单与答疑整理成清楚的目录，读者三步之内即可找到想读的那一篇。">
+<style>
+:root{
+--ink:#12233d;
+--ink-soft:#3d5674;
+--muted:#64778f;
+--line:#dfe6ef;
+--bg:#f5f7fa;
+--card:#ffffff;
+--brand:#1a5fd0;
+--brand-soft:#e8f0fd;
+--accent:#0f9d85;
+--radius:14px;
+--shadow:0 6px 24px rgba(18,35,61,.08);
+--maxw:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB","Source Han Sans SC",Arial,sans-serif;
+color:var(--ink);
+background:var(--bg);
+line-height:1.75;
+font-size:16px;
+}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700;letter-spacing:.2px}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.25em}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;padding:10px 16px;border-radius:8px;z-index:99}
+.skip:focus{left:16px;top:12px}
+.site-header{
+position:sticky;top:0;z-index:40;
+background:rgba(255,255,255,.92);
+backdrop-filter:saturate(160%) blur(8px);
+border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand-mark{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:20px;height:20px;display:block}
+.site-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.site-nav a{display:block;padding:8px 12px;border-radius:9px;color:var(--ink-soft);font-size:15px}
+.site-nav a:hover{background:var(--brand-soft);color:var(--brand);text-decoration:none}
+.hero{
+padding:56px 0 44px;
+background:linear-gradient(168deg,#eef3fb 0%,#f7f9fc 52%,#f5f7fa 100%);
+border-bottom:1px solid var(--line);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.eyebrow{
+display:inline-block;font-size:13px;letter-spacing:1.5px;color:var(--accent);
+background:#e6f6f2;border-radius:999px;padding:4px 12px;margin-bottom:16px;
+}
+.hero h1{font-size:34px;margin-bottom:14px}
+.hero p.lead{color:var(--ink-soft);font-size:17px;max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{
+display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;
+font-size:15px;font-weight:600;border:1px solid transparent;cursor:pointer;
+transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(26,95,208,.22)}
+.btn-primary:hover{background:#1550b3;text-decoration:none}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{background:#f2f6fc;text-decoration:none}
+.hero-art{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.hero-art svg{width:100%;height:auto;display:block}
+.hero-art figcaption{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+section.block{padding:52px 0}
+.section-head{margin-bottom:26px;max-width:46em}
+.section-head h2{font-size:26px;margin-bottom:8px}
+.section-head p{color:var(--muted);font-size:15px}
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.intro-card{
+background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+padding:22px;box-shadow:var(--shadow);
+}
+.intro-card h3{font-size:17px;margin-bottom:8px}
+.intro-card p{color:var(--ink-soft);font-size:15px}
+.intro-icon{width:38px;height:38px;border-radius:10px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.intro-icon svg{width:20px;height:20px;display:block}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cat-card{
+background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+padding:22px;display:flex;flex-direction:column;gap:10px;
+transition:border-color .15s ease,box-shadow .15s ease;
+}
+.cat-card:hover{border-color:#c3d6f3;box-shadow:var(--shadow)}
+.cat-card h3{font-size:17px}
+.cat-card p{color:var(--ink-soft);font-size:15px;flex:1}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.tag{font-size:12px;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 10px}
+.pick-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pick-list li{
+display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:start;
+padding:20px 4px;border-bottom:1px solid var(--line);
+}
+.pick-index{font-size:22px;font-weight:700;color:#c3d2e6;font-variant-numeric:tabular-nums}
+.pick-body h3{font-size:17px;margin-bottom:6px}
+.pick-body p{color:var(--ink-soft);font-size:15px}
+.pick-meta{font-size:13px;color:var(--muted);white-space:nowrap;padding-top:4px}
+.steps{counter-reset:step;list-style:none;padding:0;margin:0;display:grid;gap:16px}
+.steps li{
+counter-increment:step;position:relative;
+background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+padding:20px 22px 20px 66px;box-shadow:var(--shadow);
+}
+.steps li::before{
+content:counter(step);
+position:absolute;left:20px;top:20px;width:30px;height:30px;border-radius:50%;
+background:var(--brand);color:#fff;font-size:14px;font-weight:700;
+display:flex;align-items:center;justify-content:center;
+}
+.steps h3{font-size:16px;margin-bottom:6px}
+.steps p{color:var(--ink-soft);font-size:15px}
+.faq{max-width:900px}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.faq-q{
+width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+background:none;border:0;padding:18px 20px;font:inherit;font-weight:600;font-size:16px;
+color:var(--ink);text-align:left;cursor:pointer;
+}
+.faq-q:hover{background:#f7faff}
+.faq-q .chev{flex:0 0 18px;width:18px;height:18px;transition:transform .2s ease;color:var(--muted)}
+.faq-q[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.faq-a{padding:0 20px 18px;color:var(--ink-soft);font-size:15px;border-top:1px dashed var(--line);padding-top:16px;margin-top:-1px}
+.faq-a[hidden]{display:none}
+.site-footer{background:var(--ink);color:#c9d6e8;margin-top:12px;padding:46px 0 26px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.site-footer h3{color:#fff;font-size:16px;margin-bottom:12px}
+.site-footer p{font-size:14px;color:#a9bad1;line-height:1.8}
+.site-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.site-footer a{color:#c9d6e8;font-size:14px}
+.site-footer a:hover{color:#fff}
+.disclaimer{
+border-top:1px solid rgba(255,255,255,.14);margin-top:30px;padding-top:20px;
+font-size:13px;color:#8fa3bd;line-height:1.8;
+}
+.footer-bottom{margin-top:14px;font-size:13px;color:#7f93ad;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.to-top{
+position:fixed;right:20px;bottom:24px;z-index:50;
+width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+background:#fff;color:var(--brand);box-shadow:var(--shadow);cursor:pointer;
+display:flex;align-items:center;justify-content:center;
+opacity:0;visibility:hidden;transform:translateY(10px);
+transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.to-top svg{width:20px;height:20px;display:block}
+@media (max-width:900px){
+.hero-grid{grid-template-columns:1fr}
+.intro-grid,.cat-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr}
+.hero h1{font-size:29px}
+}
+@media (max-width:640px){
+.header-inner{flex-direction:column;align-items:flex-start;padding:10px 0;gap:8px}
+.site-nav ul{gap:2px}
+.site-nav a{padding:7px 9px;font-size:14px}
+.hero{padding:40px 0 34px}
+.hero h1{font-size:25px}
+section.block{padding:38px 0}
+.intro-grid,.cat-grid{grid-template-columns:1fr}
+.pick-list li{grid-template-columns:40px 1fr;gap:12px}
+.pick-meta{grid-column:2;padding-top:0}
+.footer-grid{grid-template-columns:1fr}
+.section-head h2{font-size:22px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="#top">
+<span class="brand-mark" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"></path></svg>
+</span>
+<span>内容资讯平台</span>
+</a>
+<nav class="site-nav" aria-label="站点主导航">
+<ul>
+<li><a href="#intro">站点介绍</a></li>
+<li><a href="#categories">内容分类</a></li>
+<li><a href="#picks">精选列表</a></li>
+<li><a href="#guide">使用指南</a></li>
+<li><a href="#faq">常见问题</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<div id="top"></div>
+
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<span class="eyebrow">阅读入口</span>
+<h1>把想看的内容，按目录排好</h1>
+<p class="lead">这里不追热点，只做整理。栏目按主题划分，精选按价值排序，常见疑问单独成篇，方便你从任意位置切入，读完就走。</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#categories">开始浏览栏目</a>
+<a class="btn btn-ghost" href="#guide">查看使用指南</a>
+</div>
+</div>
+<figure class="hero-art">
+<svg viewBox="0 0 420 260" role="img" aria-label="站点结构示意图">
+<rect x="0" y="0" width="420" height="260" rx="12" fill="#f7f9fc"></rect>
+<rect x="24" y="26" width="372" height="30" rx="8" fill="#dbe6f7"></rect>
+<circle cx="44" cy="41" r="5" fill="#1a5fd0"></circle>
+<rect x="60" y="36" width="92" height="10" rx="5" fill="#b9cdea"></rect>
+<rect x="24" y="72" width="180" height="76" rx="10" fill="#ffffff" stroke="#dfe6ef"></rect>
+<rect x="40" y="90" width="70" height="10" rx="5" fill="#1a5fd0"></rect>
+<rect x="40" y="110" width="132" height="8" rx="4" fill="#dbe6f7"></rect>
+<rect x="40" y="126" width="104" height="8" rx="4" fill="#dbe6f7"></rect>
+<rect x="216" y="72" width="180" height="76" rx="10" fill="#ffffff" stroke="#dfe6ef"></rect>
+<rect x="232" y="90" width="56" height="10" rx="5" fill="#0f9d85"></rect>
+<rect x="232" y="110" width="132" height="8" rx="4" fill="#e3efe9"></rect>
+<rect x="232" y="126" width="88" height="8" rx="4" fill="#e3efe9"></rect>
+<rect x="24" y="164" width="372" height="24" rx="8" fill="#eef3fb" stroke="#dfe6ef"></rect>
+<rect x="40" y="172" width="120" height="8" rx="4" fill="#c3d2e6"></rect>
+<rect x="24" y="200" width="372" height="24" rx="8" fill="#eef3fb" stroke="#dfe6ef"></rect>
+<rect x="40" y="208" width="168" height="8" rx="4" fill="#c3d2e6"></rect>
+</svg>
+<figcaption>栏目、精选与答疑构成的三层结构</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="block" id="intro">
+<div class="wrap">
+<div class="section-head">
+<h2>站点介绍</h2>
+<p>一个以整理为核心的内容站点：先分类，再筛选，最后给出可执行的说明。</p>
+</div>
+<div class="intro-grid">
+<article class="intro-card">
+<span class="intro-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="#1a5fd0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M7 9h10M7 13h7"></path></svg>
+</span>
+<h3>结构优先</h3>
+<p>全站内容按栏目归位，每篇文章只有一个主分类，避免在多个入口之间反复跳转。</p>
+</article>
+<article class="intro-card">
+<span class="intro-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="#1a5fd0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5L21 21"></path></svg>
+</span>
+<h3>检索便捷</h3>
+<p>每篇内容都配有主题标签与摘要，读者可凭标签快速判断是否值得细读。</p>
+</article>
+<article class="intro-card">
+<span class="intro-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="#1a5fd0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"></path></svg>
+</span>
+<h3>表述克制</h3>
+<p>不夸大结论、不使用诱导性标题，凡涉及判断的内容均标明适用范围。</p>
+</article>
+</div>
+</div>
+</section>
+
+<section class="block" id="categories">
+<div class="wrap">
+<div class="section-head">
+<h2>内容分类</h2>
+<p>六个栏目覆盖从观察、方法到答疑的主要阅读场景，可按需替换为自有关键词。</p>
+</div>
+<div class="cat-grid">
+<article class="cat-card">
+<h3>行业观察</h3>
+<p>面向从业者的趋势梳理，侧重结构变化与因果关系，不追逐单一事件。</p>
+<div class="tag-row"><span class="tag">趋势</span><span class="tag">结构</span><span class="tag">研判</span></div>
+</article>
+<article class="cat-card">
+<h3>实用指南</h3>
+<p>步骤化说明文，交代前置条件、操作顺序与常见错误，便于直接照着执行。</p>
+<div class="tag-row"><span class="tag">步骤</span><span class="tag">清单</span><span class="tag">方法</span></div>
+</article>
+<article class="cat-card">
+<h3>产品实践</h3>
+<p>对具体功能的拆解与复盘，说明设计取舍与落地代价，而非仅罗列功能清单。</p>
+<div class="tag-row"><span class="tag">复盘</span><span class="tag">取舍</span><span class="tag">落地</span></div>
+</article>
+<article class="cat-card">
+<h3>数据视角</h3>
+<p>围绕口径、样本与指标展开的解读，强调数据能说明什么、不能说明什么。</p>
+<div class="tag-row"><span class="tag">口径</span><span class="tag">指标</span><span class="tag">解读</span></div>
+</article>
+<article class="cat-card">
+<h3>阅读清单</h3>
+<p>按主题聚合的书目与长文清单，附选择理由与阅读顺序建议。</p>
+<div class="tag-row"><span class="tag">书目</span><span class="tag">顺序</span><span class="tag">聚合</span></div>
+</article>
+<article class="cat-card">
+<h3>常见问题</h3>
+<p>把反复被问到的疑问集中成篇，给出可直接引用的简短答复与延伸阅读。</p>
+<div class="tag-row"><span class="tag">答疑</span><span class="tag">引用</span><span class="tag">延伸</span></div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="block" id="picks">
+<div class="wrap">
+<div class="section-head">
+<h2>精选列表</h2>
+<p>按可复用程度排序的五篇内容，标号仅表示在本页的推荐次序。</p>
+</div>
+<ol class="pick-list">
+<li>
+<span class="pick-index" aria-hidden="true">01</span>
+<div class="pick-body">
+<h3>如何为一个栏目写好开篇说明</h3>
+<p>说明栏目的边界、读者的收获与判断标准，让新读者在三十秒内决定是否继续读。</p>
+</div>
+<span class="pick-meta">方法与写作</span>
+</li>
+<li>
+<span class="pick-index" aria-hidden="true">02</span>
+<div class="pick-body">
+<h3>把零散笔记整理成可复用清单</h3>
+<p>从收集、合并到去重与编号，给出四步整理流程与常见失败点。</p>
+</div>
+<span class="pick-meta">整理与归档</span>
+</li>
+<li>
+<span class="pick-index" aria-hidden="true">03</span>
+<div class="pick-body">
+<h3>判断一份资料是否值得细读</h3>
+<p>用来源、时效与可验证性三个维度快速筛选，避免在低质量材料上耗时间。</p>
+</div>
+<span class="pick-meta">筛选与判断</span>
+</li>
+<li>
+<span class="pick-index" aria-hidden="true">04</span>
+<div class="pick-body">
+<h3>长文摘要的写作分寸</h3>
+<p>摘要应保留结论与前提，删去论证过程，同时避免把推测写成确定事实。</p>
+</div>
+<span class="pick-meta">表达与克制</span>
+</li>
+<li>
+<span class="pick-index" aria-hidden="true">05</span>
+<div class="pick-body">
+<h3>为读者设计一条最短路径</h3>
+<p>从首页到目标内容的点击次数，决定读者是否愿意留下来继续浏览。</p>
+</div>
+<span class="pick-meta">结构与导航</span>
+</li>
+</ol>
+</div>
+</section>
+
+<section class="block" id="guide">
+<div class="wrap">
+<div class="section-head">
+<h2>使用指南</h2>
+<p>四步走完整站，任何一步都可以直接跳出，不必按顺序读完。</p>
+</div>
+<ol class="steps">
+<li>
+<h3>先看栏目地图</h3>
+<p>浏览上方的内容分类，确认你要找的信息属于哪个主题，再决定进入哪个栏目。</p>
+</li>
+<li>
+<h3>用标签缩小范围</h3>
+<p>在栏目内查看主题标签与摘要，凭标签排除不相关内容，只保留候选篇目。</p>
+</li>
+<li>
+<h3>按需跳读正文</h3>
+<p>方法类内容建议从步骤开始读，观察类内容可先看结论段，再回看论证过程。</p>
+</li>
+<li>
+<h3>留下可执行结论</h3>
+<p>读完记录一条可执行结论与一条待验证问题，避免只留下模糊印象。</p>
+</li>
+</ol>
+</div>
+</section>
+
+<section class="block" id="faq">
+<div class="wrap">
+<div class="section-head">
+<h2>常见问题</h2>
+<p>点击问题展开答复，再次点击收起。</p>
+</div>
+<div class="faq">
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1">
+<span>内容多久更新一次？</span>
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<div class="faq-a" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1" hidden>
+<p>按栏目节奏更新，观察类内容随主题推进补充，指南类内容在方法变化时修订。历史篇目保留原样，若有重大调整会在文首标注修订说明。</p>
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
+<span>能否直接引用本站内容？</span>
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<div class="faq-a" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" hidden>
+<p>可以摘录并注明出处，但不得整篇转载、改编或用于商业用途。引用时请保留原始语境，避免截断造成结论变形。</p>
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
+<span>文中观点可以当作决策依据吗？</span>
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<div class="faq-a" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3" hidden>
+<p>不建议。本站内容以整理与说明为主，不构成任何投资、法律或医疗建议。涉及具体决策时，请结合自身情况并咨询具备资质的专业人士。</p>
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
+<span>找不到需要的内容怎么办？</span>
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<div class="faq-a" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4" hidden>
+<p>先用标签在栏目内缩小范围，再回到使用指南确认检索路径。若仍无对应篇目，说明该主题尚未覆盖，可通过页面底部的反馈入口提交需求。</p>
+</div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5">
+<span>移动端阅读体验如何？</span>
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<div class="faq-a" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5" hidden>
+<p>页面采用自适应布局，窄屏下导航自动换行、卡片改为单列，正文保持十六像素基准字号，长段落不留过窄行宽。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-grid">
+<div>
+<h3>内容资讯平台</h3>
+<p>以整理为核心的阅读站点，栏目、精选与答疑三层结构，方便读者快速定位所需信息。</p>
+</div>
+<div>
+<h3>栏目入口</h3>
+<ul>
+<li><a href="#intro">站点介绍</a></li>
+<li><a href="#categories">内容分类</a></li>
+<li><a href="#picks">精选列表</a></li>
+<li><a href="#guide">使用指南</a></li>
+</ul>
+</div>
+<div>
+<h3>阅读帮助</h3>
+<ul>
+<li><a href="#faq">常见问题</a></li>
+<li><a href="#guide">检索路径说明</a></li>
+<li><a href="#top">回到页首</a></li>
+</ul>
+</div>
+</div>
+<div class="disclaimer">
+<p>免责声明：本站为通用内容结构示例页，页面中的栏目名称、篇目标题与说明文字均为占位示例，不代表真实机构、产品或服务。所有内容仅用于结构演示与阅读参考，不构成投资、法律、医疗或其他专业建议；读者依据本页内容作出的任何判断与行为，风险由本人承担。若本页后续用于正式站点，请先替换全部示例信息并核实其准确性。</p>
+<p>版权说明：页面模板可自由套用与修改，套用后产生的实际内容及相关权利由使用者自行负责。</p>
+</div>
+<div class="footer-bottom">
+<span>内容资讯平台 · 栏目导航与内容精选</span>
+<span>页面结构示例 · 仅供参考</span>
+</div>
+</div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="返回顶部">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"></path><path d="M6 12l6-6 6 6"></path></svg>
+</button>
+
+<script>
+(function () {
+  var faqButtons = document.querySelectorAll('.faq-q');
+  Array.prototype.forEach.call(faqButtons, function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      if (panel) {
+        if (expanded) {
+          panel.setAttribute('hidden', 'hidden');
+        } else {
+          panel.removeAttribute('hidden');
+        }
+      }
+    });
+  });
+
+  var anchorLinks = document.querySelectorAll('a[href^="#"]');
+  Array.prototype.forEach.call(anchorLinks, function (link) {
+    link.addEventListener('click', function (event) {
+      var hash = link.getAttribute('href');
+      if (!hash || hash.length < 2) {
+        return;
+      }
+      var target = document.getElementById(hash.slice(1));
+      if (!target) {
+        return;
+      }
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 320) {
+        toTop.classList.add('show');
+      } else {
+        toTop.classList.remove('show');
+      }
+    });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>
+</body>
+</html>
